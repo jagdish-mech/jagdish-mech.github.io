@@ -1,127 +1,44 @@
-* {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-  font-family: "Segoe UI", sans-serif;
+/* CAD GRID BACKGROUND */
+.grid-bg {
+  position: absolute;
+  inset: 0;
+  background:
+    linear-gradient(rgba(56,189,248,0.1) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(56,189,248,0.1) 1px, transparent 1px);
+  background-size: 60px 60px;
+  z-index: 1;
 }
 
-body {
-  background: #0f172a;
-  color: #e5e7eb;
-  line-height: 1.6;
-}
-
-/* HERO */
 .hero {
-  height: 100vh;
-  background: radial-gradient(circle at top, #1e293b, #020617);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  text-align: center;
+  position: relative;
+  overflow: hidden;
 }
 
-.hero h1 {
-  font-size: 4rem;
+.hero-content {
+  position: relative;
+  z-index: 2;
+}
+
+.glow {
   color: #38bdf8;
+  text-shadow: 0 0 15px rgba(56,189,248,0.8);
 }
 
-.hero h2 {
-  margin-top: 10px;
-  font-weight: 400;
+/* BUTTONS */
+.hero-buttons {
+  display: flex;
+  gap: 20px;
+  justify-content: center;
+  margin-top: 30px;
 }
 
-.hero p {
-  margin: 15px 0;
-  opacity: 0.8;
+.btn.outline {
+  background: transparent;
+  color: #38bdf8;
+  border: 2px solid #38bdf8;
 }
 
-.btn {
-  display: inline-block;
-  margin-top: 20px;
-  padding: 12px 25px;
+.btn.outline:hover {
   background: #38bdf8;
   color: #020617;
-  text-decoration: none;
-  font-weight: bold;
-  border-radius: 30px;
-  transition: 0.3s;
-}
-
-.btn:hover {
-  transform: scale(1.1);
-}
-
-/* SECTIONS */
-.section {
-  padding: 80px 12%;
-}
-
-.section.dark {
-  background: #020617;
-}
-
-.section h2 {
-  margin-bottom: 25px;
-  color: #38bdf8;
-}
-
-/* SKILLS */
-.skills-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-  gap: 20px;
-}
-
-.skill {
-  background: #020617;
-  padding: 20px;
-  border-left: 4px solid #38bdf8;
-  transition: 0.3s;
-}
-
-.skill:hover {
-  transform: translateY(-8px);
-}
-
-/* CARDS */
-.card {
-  background: #020617;
-  padding: 25px;
-  margin-bottom: 20px;
-  border-left: 5px solid #22c55e;
-}
-
-.card.highlight {
-  border-left-color: #facc15;
-}
-
-/* FLOW */
-.flow {
-  display: flex;
-  justify-content: space-between;
-  font-weight: bold;
-}
-
-.flow span {
-  color: #38bdf8;
-}
-
-/* FOOTER */
-footer {
-  text-align: center;
-  padding: 40px;
-  background: #020617;
-}
-
-/* ANIMATIONS */
-.fade-in {
-  opacity: 0;
-  transform: translateY(40px);
-  transition: 1s ease;
-}
-
-.fade-in.show {
-  opacity: 1;
-  transform: translateY(0);
 }
