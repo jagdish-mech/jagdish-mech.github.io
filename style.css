@@ -1,78 +1,103 @@
-// Lightweight interactivity: navigation, reveal, active state, menu toggle
-document.addEventListener('DOMContentLoaded', () => {
-  const navButtons = Array.from(document.querySelectorAll('.navlink'));
-  const sections = Array.from(document.querySelectorAll('.section'));
-  const menuToggle = document.getElementById('menuToggle');
-  const sidebar = document.getElementById('sidebar');
-  const yearEl = document.getElementById('year');
+:root{
+  --bg:#071226;
+  --panel:#0f1724;
+  --muted:#9aa7b2;
+  --accent1:#7B61FF;
+  --accent2:#00D4FF;
+  --white: #e6eef6;
+  --glass: rgba(255,255,255,0.03);
+  --radius:14px;
+  --ease:cubic-bezier(.2,.9,.2,1);
+  font-family: 'Inter', system-ui, -apple-system, 'Segoe UI', Roboto, Arial;
+  color:var(--white);
+  background: linear-gradient(180deg,#041024 0%, #071226 100%);
+}
 
-  // set current year
-  if (yearEl) yearEl.textContent = new Date().getFullYear();
+/* Layout */
+*{box-sizing:border-box}
+html,body{height:100%;margin:0}
+body{background:var(--bg);-webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:grayscale}
+.topbar{
+  display:flex;align-items:center;justify-content:space-between;padding:18px 28px;position:fixed;inset:0 0 auto 0;z-index:50;background:linear-gradient(180deg, rgba(7,18,38,0.6), transparent);
+  backdrop-filter: blur(6px);
+}
+.brand{font-weight:700;font-size:18px}
+.topnav{display:flex;gap:8px;align-items:center}
+.navbtn{background:transparent;border:0;color:var(--muted);padding:8px 10px;border-radius:8px;cursor:pointer;font-weight:600}
+.navbtn:hover{color:var(--white);background:var(--glass);transform:translateY(-2px)}
+.resume-btn{margin-left:8px;padding:8px 12px;border-radius:10px;background:linear-gradient(90deg,var(--accent1),var(--accent2));color:#041028;text-decoration:none;font-weight:700}
 
-  // scroll to section when nav clicked
-  navButtons.forEach(btn => {
-    btn.addEventListener('click', () => {
-      const id = btn.dataset.target;
-      const el = document.getElementById(id);
-      if (el) {
-        el.scrollIntoView({behavior:'smooth',block:'start'});
-      }
-      // mobile: close sidebar
-      if (sidebar.classList.contains('open')) {
-        sidebar.classList.remove('open');
-        menuToggle.setAttribute('aria-expanded','false');
-      }
-    });
-  });
+/* scroll snap container */
+.snap-container{
+  scroll-snap-type:y mandatory;
+  height:100vh;
+  overflow-y:scroll;
+  scroll-behavior:smooth;
+  -webkit-overflow-scrolling:touch;
+  padding-top:70px; /* header height */
+}
 
-  // toggle sidebar for mobile
-  if (menuToggle) {
-    menuToggle.addEventListener('click', () => {
-      const open = sidebar.classList.toggle('open');
-      menuToggle.setAttribute('aria-expanded', open ? 'true' : 'false');
-    });
-  }
+/* each section is full height */
+.snap-section{
+  scroll-snap-align:start;
+  min-height:calc(100vh - 70px);
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  position:relative;
+  padding:40px 24px;
+}
 
-  // IntersectionObserver to show sections and mark active nav item
-  const io = new IntersectionObserver((entries) => {
-    entries.forEach(entry => {
-      const id = entry.target.id;
-      const nav = navButtons.find(b => b.dataset.target === id);
-      if (entry.isIntersecting) {
-        entry.target.classList.add('is-visible');
-        nav && nav.classList.add('active');
-      } else {
-        nav && nav.classList.remove('active');
-      }
-    });
-  }, {root: null, rootMargin: '-20% 0px -40% 0px', threshold: 0});
+/* hero */
+.hero{
+  background:linear-gradient(135deg, rgba(123,97,255,0.09), rgba(0,212,255,0.04));
+  border-radius:18px;
+  margin:24px;
+  box-shadow:0 20px 60px rgba(2,6,23,0.6);
+  position:relative;
+}
+.container{max-width:980px;width:100%;}
+.big{font-size:40px;margin:0 0 6px}
+.sub{font-size:16px;color:var(--muted);margin:0}
+.lead{margin-top:12px;color:var(--muted)}
+.hero-actions{margin-top:18px;display:flex;gap:12px}
+.cta{background:linear-gradient(90deg,var(--accent1),var(--accent2));padding:10px 14px;border-radius:12px;color:#041028;text-decoration:none;font-weight:700}
+.ghost{padding:10px 14px;border-radius:12px;background:transparent;border:1px solid rgba(255,255,255,0.06);color:var(--white);text-decoration:none}
 
-  sections.forEach(s => io.observe(s));
+/* panels */
+.panel{margin:24px;border-radius:18px;background:linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01));box-shadow:0 18px 50px rgba(2,6,23,0.45);padding:36px}
+h2{margin:0 0 12px}
+.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:12px}
+.card{background:var(--glass);padding:14px;border-radius:12px}
+.skills{display:flex;flex-wrap:wrap;gap:10px}
+.skills span{background:linear-gradient(90deg,var(--accent1),var(--accent2));padding:8px 10px;border-radius:999px;color:#041028;font-weight:700}
 
-  // make project cards keyboard accessible (Enter/Space)
-  document.querySelectorAll('.proj-card').forEach(card => {
-    card.addEventListener('click', () => {
-      alert('Project details page coming next — you can link this to a project page or modal.');
-    });
-    card.addEventListener('keydown', (e) => {
-      if (e.key === 'Enter' || e.key === ' ') {
-        e.preventDefault();
-        card.click();
-      }
-    });
-  });
+/* projects */
+.proj-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:12px}
+.proj{padding:14px;background:linear-gradient(180deg, rgba(255,255,255,0.02), transparent);border-radius:12px}
 
-  // 3D tilt effect on the hero card
-  const cardStage = document.querySelector('.card-stage');
-  if (cardStage) {
-    cardStage.parentElement.addEventListener('mousemove', (e) => {
-      const rect = cardStage.getBoundingClientRect();
-      const x = (e.clientX - rect.left) / rect.width - 0.5;
-      const y = (e.clientY - rect.top) / rect.height - 0.5;
-      cardStage.style.transform = `rotateY(${x * 10}deg) rotateX(${-y * 8}deg)`;
-    });
-    cardStage.parentElement.addEventListener('mouseleave', () => {
-      cardStage.style.transform = '';
-    });
-  }
-});
+/* next button (small chevron) */
+.next{
+  position:absolute;left:50%;transform:translateX(-50%);bottom:18px;background:rgba(255,255,255,0.06);border:0;padding:10px 14px;border-radius:999px;color:var(--white);cursor:pointer;font-size:16px;
+  transition:transform .18s var(--ease);
+}
+.next:hover{transform:translateX(-50%) translateY(-6px)}
+
+/* animations: start slightly above and invisible, slide down when in-view */
+.anim{opacity:0;transform:translateY(-24px) scale(.995);transition:opacity .7s var(--ease),transform .7s var(--ease)}
+.anim.in-view{opacity:1;transform:none}
+
+/* small utilities */
+.muted{color:var(--muted)}
+.small{font-size:13px;color:var(--muted)}
+
+/* responsive */
+@media (max-width:900px){
+  .big{font-size:32px}
+  .topnav{display:none}
+  .topbar{padding:12px}
+}
+
+/* skip link */
+.skip-link{position:absolute;left:-9999px;top:auto;width:1px;height:1px;overflow:hidden}
+.skip-link:focus{position:fixed;left:12px;top:12px;width:auto;height:auto;padding:8px 12px;background:#fff;color:#041028;border-radius:6px;z-index:60}
