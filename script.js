@@ -1,13 +1,6 @@
-const sections = document.querySelectorAll(".fade-in");
-
-const observer = new IntersectionObserver(entries => {
-  entries.forEach(entry => {
-    if (entry.isIntersecting) {
-      entry.target.classList.add("show");
-    }
+function showSection(id) {
+  document.querySelectorAll(".section").forEach(sec => {
+    sec.classList.remove("active");
   });
-}, { threshold: 0.2 });
-
-sections.forEach(section => {
-  observer.observe(section);
-});
+  document.getElementById(id).classList.add("active");
+}
