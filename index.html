@@ -1,118 +1,216 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
   <title>Jagdish | Mechanical Design Engineer</title>
-  <link rel="stylesheet" href="style.css">
+
+  <!-- Google Font -->
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700;800&display=swap" rel="stylesheet">
+
+  <link rel="stylesheet" href="style.css" />
+  <meta name="theme-color" content="#0f1724"/>
 </head>
 <body>
+  <div class="site">
 
-<div class="app">
+    <!-- animated background decorative orbs -->
+    <div class="bg-orbs" aria-hidden="true">
+      <span class="orb orb-1"></span>
+      <span class="orb orb-2"></span>
+      <span class="orb orb-3"></span>
+    </div>
 
-  <!-- SIDEBAR MENU -->
-  <nav class="sidebar">
-    <h2>Jagdish</h2>
-    <ul>
-      <li onclick="showSection('home')">Home</li>
-      <li onclick="showSection('education')">Education</li>
-      <li onclick="showSection('skills')">Skills</li>
-      <li onclick="showSection('projects')">Projects</li>
-      <li onclick="showSection('certifications')">Certifications</li>
-      <li onclick="showSection('hobbies')">Hobbies</li>
-      <li onclick="showSection('contact')">Contact</li>
-    </ul>
-  </nav>
-
-  <!-- MAIN CONTENT -->
-  <main class="content">
-
-    <!-- HOME -->
-    <section id="home" class="section active">
-      <h1>Mechanical Design Engineer</h1>
-      <p>M.Tech – Machine Design</p>
-      <p>CAD • FEA • Manufacturing • Design Optimization</p>
-      <a class="btn" href="Jagdish-Resume.pdf" download>Download Resume</a>
-    </section>
-
-    <!-- EDUCATION -->
-    <section id="education" class="section">
-      <h1>Education</h1>
-
-      <div class="card">
-        <h3>M.Tech – Machine Design</h3>
-        <p>UVCE, Bengaluru</p>
-        <p>CGPA: 9.26</p>
+    <!-- header (mobile) -->
+    <header class="topbar">
+      <button id="menuToggle" class="menu-btn" aria-label="Toggle menu" aria-expanded="false">
+        <svg viewBox="0 0 24 24" width="20" height="20"><path fill="currentColor" d="M3 6h18M3 12h18M3 18h18"/></svg>
+      </button>
+      <div class="brand">Jagdish</div>
+      <div class="top-actions">
+        <a class="btn ghost" href="Jagdish-Resume.pdf" download>Resume</a>
       </div>
+    </header>
 
-      <div class="card">
-        <h3>B.Tech – Mechanical Engineering</h3>
-        <p>REVA University (2023)</p>
-        <p>CGPA: 8.03</p>
-      </div>
+    <div class="layout">
 
-      <div class="card">
-        <h3>PUC (PCMB)</h3>
-        <p>60.3%</p>
-      </div>
+      <!-- SIDEBAR MENU -->
+      <nav class="sidebar" id="sidebar" aria-label="Primary">
+        <div class="profile">
+          <div class="avatar" aria-hidden="true">
+            <!-- simple gear-like svg as avatar -->
+            <svg viewBox="0 0 64 64" width="64" height="64" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <circle cx="32" cy="32" r="30" fill="url(#g)"/>
+              <defs><linearGradient id="g" x1="0" x2="1"><stop offset="0" stop-color="#7b61ff"/><stop offset="1" stop-color="#00d4ff"/></linearGradient></defs>
+            </svg>
+          </div>
+          <h2>Jagdish</h2>
+          <p class="muted">Mechanical Design Engineer</p>
+        </div>
 
-      <div class="card">
-        <h3>Class X (CBSE)</h3>
-        <p>CGPA: 8.0</p>
-      </div>
-    </section>
+        <ul class="navlist" role="list">
+          <li><button data-target="home" class="navlink">Home</button></li>
+          <li><button data-target="education" class="navlink">Education</button></li>
+          <li><button data-target="skills" class="navlink">Skills</button></li>
+          <li><button data-target="projects" class="navlink">Projects</button></li>
+          <li><button data-target="certifications" class="navlink">Certifications</button></li>
+          <li><button data-target="hobbies" class="navlink">Hobbies</button></li>
+          <li><button data-target="contact" class="navlink">Contact</button></li>
+        </ul>
 
-    <!-- SKILLS -->
-    <section id="skills" class="section">
-      <h1>Technical Skills</h1>
-      <div class="grid">
-        <div class="tile">SolidWorks</div>
-        <div class="tile">CATIA</div>
-        <div class="tile">Fusion 360</div>
-        <div class="tile">ANSYS (FEA & CFD)</div>
-        <div class="tile">GD&T</div>
-        <div class="tile">DFM</div>
-      </div>
-    </section>
+        <div class="sidebar-footer">
+          <small class="muted">Bengaluru, India • jagdishkote8@gmail.com</small>
+        </div>
+      </nav>
 
-    <!-- PROJECTS -->
-    <section id="projects" class="section">
-      <h1>Projects</h1>
+      <!-- MAIN CONTENT -->
+      <main class="content" id="content">
 
-      <div class="card clickable" onclick="alert('Project details page coming next')">
-        <h3>Driving Simulator Design</h3>
-        <p>CAD design, structural analysis, fabrication</p>
-      </div>
-    </section>
+        <!-- HERO / HOME -->
+        <section id="home" class="section hero active">
+          <div class="hero-left">
+            <h1>Jagdish</h1>
+            <h2>Mechanical Design Engineer</h2>
+            <p class="lead">M.Tech – Machine Design • CAD • FEA • Manufacturing • Design Optimization</p>
 
-    <!-- CERTIFICATIONS -->
-    <section id="certifications" class="section">
-      <h1>Certifications</h1>
-      <div class="card">
-        <h3>SolidWorks Premium Design Course</h3>
-        <p>Cadmaxx Ed.Tech Pvt Ltd</p>
-      </div>
-    </section>
+            <div class="actions">
+              <a class="btn primary" href="#projects">See Projects</a>
+              <a class="btn ghost" href="Jagdish-Resume.pdf" download>Download CV</a>
+            </div>
 
-    <!-- HOBBIES -->
-    <section id="hobbies" class="section">
-      <h1>Hobbies</h1>
-      <div class="grid">
-        <div class="tile">♟ Chess</div>
-        <div class="tile">🎬 Video Editing</div>
-        <div class="tile">📱 Social Media Management</div>
-      </div>
-    </section>
+            <div class="chips">
+              <span>SolidWorks</span>
+              <span>ANSYS</span>
+              <span>GD&amp;T</span>
+            </div>
+          </div>
 
-    <!-- CONTACT -->
-    <section id="contact" class="section">
-      <h1>Contact</h1>
-      <p>Email: jagdishkote8@gmail.com</p>
-      <p>Location: Bengaluru, India</p>
-    </section>
+          <div class="hero-right" aria-hidden="true">
+            <div class="card-3d">
+              <div class="card-stage">
+                <div class="card-face card-front">
+                  <h3>Driving Simulator</h3>
+                  <p>CAD, structural analysis & fabrication</p>
+                </div>
+                <div class="card-face card-back">
+                  <h3>View More</h3>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
 
-  </main>
-</div>
+        <!-- EDUCATION -->
+        <section id="education" class="section">
+          <h1 class="section-title">Education</h1>
+          <div class="cards">
+            <article class="card">
+              <h3>M.Tech – Machine Design</h3>
+              <p class="muted">UVCE, Bengaluru</p>
+              <p>CGPA: <strong>9.26</strong></p>
+            </article>
 
-<script src="script.js"></script>
+            <article class="card">
+              <h3>B.Tech – Mechanical Engineering</h3>
+              <p class="muted">REVA University (2023)</p>
+              <p>CGPA: <strong>8.03</strong></p>
+            </article>
+
+            <article class="card">
+              <h3>PUC (PCMB)</h3>
+              <p class="muted">60.3%</p>
+            </article>
+
+            <article class="card">
+              <h3>Class X (CBSE)</h3>
+              <p class="muted">CGPA: 8.0</p>
+            </article>
+          </div>
+        </section>
+
+        <!-- SKILLS -->
+        <section id="skills" class="section">
+          <h1 class="section-title">Technical Skills</h1>
+          <div class="skill-grid">
+            <div class="skill">SolidWorks</div>
+            <div class="skill">CATIA</div>
+            <div class="skill">Fusion 360</div>
+            <div class="skill">ANSYS (FEA & CFD)</div>
+            <div class="skill">GD&amp;T</div>
+            <div class="skill">DFM</div>
+          </div>
+        </section>
+
+        <!-- PROJECTS -->
+        <section id="projects" class="section">
+          <h1 class="section-title">Projects</h1>
+          <div class="project-grid">
+            <article class="proj-card clickable" data-action="open" tabindex="0">
+              <div class="proj-preview"></div>
+              <div class="proj-body">
+                <h3>Driving Simulator Design</h3>
+                <p>CAD design, structural analysis, fabrication</p>
+                <div class="meta">M.Tech • Structural FEA</div>
+              </div>
+            </article>
+
+            <article class="proj-card clickable" data-action="open" tabindex="0">
+              <div class="proj-preview"></div>
+              <div class="proj-body">
+                <h3>Design Optimization (Example)</h3>
+                <p>Topology optimisation & manufacturability</p>
+                <div class="meta">Optimization • DFM</div>
+              </div>
+            </article>
+
+            <!-- add more project cards as needed -->
+          </div>
+        </section>
+
+        <!-- CERTIFICATIONS -->
+        <section id="certifications" class="section">
+          <h1 class="section-title">Certifications</h1>
+          <div class="cards">
+            <article class="card">
+              <h3>SolidWorks Premium Design Course</h3>
+              <p class="muted">Cadmaxx Ed.Tech Pvt Ltd</p>
+            </article>
+          </div>
+        </section>
+
+        <!-- HOBBIES -->
+        <section id="hobbies" class="section">
+          <h1 class="section-title">Hobbies</h1>
+          <div class="hobby-grid">
+            <div class="hobby">♟ Chess</div>
+            <div class="hobby">🎬 Video Editing</div>
+            <div class="hobby">📱 Social Media Management</div>
+          </div>
+        </section>
+
+        <!-- CONTACT -->
+        <section id="contact" class="section">
+          <h1 class="section-title">Contact</h1>
+          <div class="contact-grid">
+            <div>
+              <p><strong>Email</strong></p>
+              <p><a href="mailto:jagdishkote8@gmail.com">jagdishkote8@gmail.com</a></p>
+            </div>
+            <div>
+              <p><strong>Location</strong></p>
+              <p>Bengaluru, India</p>
+            </div>
+          </div>
+        </section>
+
+        <footer class="site-footer">
+          <small>© <span id="year"></span> Jagdish — Mechanical Design Engineer</small>
+        </footer>
+
+      </main>
+    </div>
+  </div>
+
+  <script src="script.js"></script>
 </body>
 </html>
